@@ -2,6 +2,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.*;
 import java.util.List;
@@ -9,6 +10,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        CSVLoader csvLoader = new CSVLoader();
+        try {
+            csvLoader.loadData(".\\CSVPrototype.csv");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
 //        MsgChecks msgChecks = new MsgChecks();
 //        IncomeCalculator incomeCalculator = new IncomeCalculator();
 //
@@ -35,29 +44,6 @@ public class Main {
 //        scanner.close();
 //        System.out.println("these are you income and expenses");
 //        csvLoader();
-        csvLoader();
     }
 
-    //TODO - Convert csvLoader into a class rather than a method
-    //  should contain a writer method & a reader method
-    public static void csvLoader() {
-        try {
-            MsgChecks msgChecks = new MsgChecks();
-            FileReader inputFile = new FileReader(".\\CSVPrototype.csv");
-            FileWriter outputFile = new FileWriter(".\\CSVPrototype.csv");
-            CSVWriter writer = new CSVWriter(outputFile);
-            CSVReader reader = new CSVReaderBuilder(inputFile).build();
-            List<String[]> entries = reader.readAll();
-            int max;
-            for (String[] row : entries){
-                for (String cell : row){
-                    System.out.println(cell + "\t");
-                    //TODO - make the ---- line dynamic so that it matches the longest string plus amount
-                    System.out.println("-----------------------");
-                }
-            }
-        } catch (IOException | CsvException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
