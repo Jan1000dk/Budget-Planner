@@ -1,0 +1,24 @@
+Income Type;Category;Amount;;X
+Salary;Income;4321;;
+Unemployment Benefits;Income;10234;;
+Total Income;Income;14555;;X
+Expense Type;Category;Amount;;X
+Rent;Housing;3000;;
+Heating;Housing;500;;
+Water;Housing;500;;
+Power;Housing;500;;
+Housing total;Housing;4500;;X
+Accidental Insurance;Insurance & Subcription;500;;
+Streaming;Insurance & Subcription;100;;
+Union & Insurance Fund;Insurance & Subcription;500;;
+Other Insurance & Subscription expenses;Insurance & Subcription;200;;
+Insurance & Subscriptions total;Insurance & Subcription;1300;;X
+Public Transport;Transport;0;;
+Other Transport expenses;Transport;250;;
+Transport total;Transport;250;;X
+Private savings;Loans & Savings;500;;
+Investments;Loans & Savings;500;;
+Loans & Savings total;Loans & Savings;1000;;X
+Groceries & household supplies;Variables;3000;;
+Spare time & Other Enjoyments;Variables;1000;;
+Variables total;Variables;4000;;X

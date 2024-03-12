@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CSVLoader {
+    //TODO - Changed displayData to show two tables, Income & Expenses
     public void displayData(String pathToFile) throws IOException, CsvValidationException {
         FileReader file = new FileReader(pathToFile);
         CSVReader csvReader = new CSVReader(file);
@@ -13,30 +14,17 @@ public class CSVLoader {
         while ((nextEntry = csvReader.readNext()) != null) {
             //looping through the entire file and separates the coloums
             for (String cell : nextEntry) {
-                //Splits the cell-string to append an Amount coloum to the CLI table & perform some light formatting
-                if (cell.contains("Expense Type")) {
-                    String[] arrOfCell = cell.split(";", 2);
-                    String cell1 = String.format("| %-25s", arrOfCell[0]);
-                    String cell2 = String.format(" | %-6s |", "Amount");
-                    System.out.printf(cell1 + cell2 + "\n");
-                    System.out.printf("______________________________________%n");
+                //Catches Expense- & Income Type headers
+                if (cell.contains("Type")){
+                    cliFormatter(cell);
                 }
-                //Splits the cell-string to replace ; separator with = & perform some light formatting
-                else if (!cell.contains("Income type")) {
-                    String[] arrOfCell = cell.split(";", 2);
-                    String cell1 = String.format("| %-25s", arrOfCell[0]);
-                    String cell2 = String.format(" | %-6s |", arrOfCell[1]);
-                    System.out.println(cell1 + cell2);
-                    System.out.printf("--------------------------------------%n");
+                //Catches category totals
+                //TODO - Once loadData is created, use the method to calculate totals using the category header
+                else if (cell.contains("total")) {
+                    cliFormatterTotals(cell);
                 }
-                //Splits the cell-string to replace ; with a space and | & perform some light formatting
                 else {
-                    String[] arrOfCell = cell.split(";", 2);
-                    String cell1 = String.format("| %-25s", arrOfCell[0]);
-                    String cell2 = String.format(" | %-6s |", arrOfCell[1]);
-                    System.out.printf("--------------------------------------%n");
-                    System.out.println(cell1 + cell2);
-                    System.out.printf("______________________________________%n");
+                    cliFormatter(cell);
                 }
             }
         }
@@ -47,4 +35,26 @@ public class CSVLoader {
     public String[] saveData(){return null;}
     //TODO - Should create a new CSVPrototype.csv file with a custom name
     public String[] createNewBudget(){return null;}
+
+    //formatters to present a table in the CLI/Console
+    private String cliFormatter(String cell){
+        String[] arrOfCell = cell.split(";");
+        String cell1 = String.format("| %-40s", arrOfCell[0]);
+        String cell2 = String.format(" | %-23s |", arrOfCell[1]);
+        String cell3 = String.format(" %-6s|", arrOfCell[2]);
+        System.out.print(cell1 + cell2 + cell3 + "\n");
+        System.out.printf(
+                "------------------------------------------------------------------------------%n");
+        return cell;
+    }
+    private String cliFormatterTotals(String cell){
+        String[] arrOfCell = cell.split(";");
+        String cell1 = String.format("| %40s", arrOfCell[0]);
+        String cell2 = String.format(" | %-23s |", arrOfCell[1]);
+        String cell3 = String.format(" %-6s|", arrOfCell[2]);
+        System.out.print(cell1 + cell2 + cell3 + "\n");
+        System.out.printf(
+                "------------------------------------------------------------------------------%n");
+        return cell;
+    }
 }
