@@ -13,9 +13,7 @@ public class Main {
         CSVLoader csvLoader = new CSVLoader();
         try {
             csvLoader.loadData(".\\CSVPrototype.csv");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (CsvValidationException e) {
+        } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
 //        MsgChecks msgChecks = new MsgChecks();
