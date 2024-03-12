@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         CSVLoader csvLoader = new CSVLoader();
         try {
-            csvLoader.loadData(".\\CSVPrototype.csv");
+            csvLoader.displayData(".\\CSVPrototype.csv");
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
