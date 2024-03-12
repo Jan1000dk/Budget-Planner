@@ -1,5 +1,6 @@
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -13,22 +14,27 @@ public class CSVLoader {
             //looping through the entire file and separates the coloums
             for (String cell : nextEntry) {
                 //Splits the cell-string to append an Amount coloum to the CLI table
-                 if (cell.contains("Expense Type")) {
+                if (cell.contains("Expense Type")) {
                     String[] arrOfCell = cell.split(";", 2);
-                    cell = arrOfCell[0] +" | "+ "Amount";
+                    String cell1 = String.format("| %-25s", arrOfCell[0]);
+                    String cell2 = String.format(" | %-6s |", "Amount");
+                    System.out.printf(cell1 + cell2 + "\n");
                 }
-                 //Splits the cell-string to replace ; separator with =
-                 else if (!cell.contains("Income type")) {
+                //Splits the cell-string to replace ; separator with =
+                else if (!cell.contains("Income type")) {
                     String[] arrOfCell = cell.split(";", 2);
-                    cell = arrOfCell[0] + "=" + arrOfCell[1];
+                    String cell1 = String.format("| %-25s", arrOfCell[0]);
+                    String cell2 = String.format(" | %-6s |", arrOfCell[1]);
+                    System.out.println(cell1 + cell2);
                 }
                 //Splits the cell-string to replace ; with a space and |
-                 else{
-                     String[] arrOfCell = cell.split(";", 2);
-                     cell = arrOfCell[0] + " | " + arrOfCell[1];
-                 }
-                System.out.printf(cell + "\t" + "\n");
-                System.out.println("------------------------------");
+                else {
+                    String[] arrOfCell = cell.split(";", 2);
+                    String cell1 = String.format("| %-25s", arrOfCell[0]);
+                    String cell2 = String.format(" | %-6s |", arrOfCell[1]);
+                    System.out.println(cell1 + cell2);
+                }
+                System.out.printf("--------------------------------------%n");
             }
         }
     }
