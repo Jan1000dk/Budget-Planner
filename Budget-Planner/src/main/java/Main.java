@@ -11,10 +11,30 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         CSVLoader csvLoader = new CSVLoader();
-        try {
-            csvLoader.displayData(".\\CSVPrototype.csv");
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
+        MsgChecks msgChecks = new MsgChecks();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What do you wanna do?");
+        System.out.println("View your current budget or edit an exisiting budget?");
+        String scannerMsg = scanner.nextLine();
+        if (msgChecks.viewMsg().contains(scannerMsg)) {
+            try {
+                csvLoader.displayData(".\\CSVPrototype.csv");
+            } catch (IOException | CsvValidationException e) {
+                throw new RuntimeException(e);
+            }
+        } else if (msgChecks.editMsg().contains(scannerMsg)) {
+            System.out.println("Do you wanna edit your current budget or create a new one?");
+            scannerMsg = scanner.nextLine();
+            if (msgChecks.editMsg().contains(scannerMsg)) {
+                System.out.println("Feature not yet implemented");
+            } else if (msgChecks.newMsg().contains(scannerMsg)) {
+                System.out.println("Feature not yet implemented");
+            } else {
+                System.out.println("I did not acocunt for that answer, so fuck you, I'm leaving.");
+            }
+        } else {
+            System.out.println("I did not acocunt for that answer, so fuck you, I'm leaving.");
         }
 //        MsgChecks msgChecks = new MsgChecks();
 //        IncomeCalculator incomeCalculator = new IncomeCalculator();

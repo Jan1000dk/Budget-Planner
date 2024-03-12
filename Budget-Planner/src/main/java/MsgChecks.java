@@ -20,4 +20,25 @@ public class MsgChecks {
         yesMsg.add("nej");
         return yesMsg;
     }
+    public ArrayList<String> editMsg() {
+        ArrayList<String> editMsg = new ArrayList<String>();
+        editMsg.add("edit");
+        editMsg.add("Edit");
+        return editMsg;
+    }
+
+    public ArrayList<String> viewMsg() {
+        ArrayList<String> viewMsg = new ArrayList<String>();
+        viewMsg.add("view");
+        viewMsg.add("View");
+        return viewMsg;
+    }
+
+    public ArrayList<String> newMsg() {
+        ArrayList<String> newMsg = new ArrayList<String>();
+        newMsg.add("new");
+        newMsg.add("New");
+        return newMsg;
+    }
+
 }

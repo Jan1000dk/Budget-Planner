@@ -34,6 +34,7 @@ public class CSVLoader {
                     String[] arrOfCell = cell.split(";", 2);
                     String cell1 = String.format("| %-25s", arrOfCell[0]);
                     String cell2 = String.format(" | %-6s |", arrOfCell[1]);
+                    System.out.printf("--------------------------------------%n");
                     System.out.println(cell1 + cell2);
                     System.out.printf("______________________________________%n");
                 }
@@ -44,4 +45,6 @@ public class CSVLoader {
     public String[] loadData(){return null;}
     //TODO - Should use a CSVWriter to edit/replace data in the CSV file
     public String[] saveData(){return null;}
+    //TODO - Should create a new CSVPrototype.csv file with a custom name
+    public String[] createNewBudget(){return null;}
 }
